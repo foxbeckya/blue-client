@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 // import Login from './Login';
 // import Signup from './Signup';
+import APIURL from '../../helpers/environment';
 import './Auth.css';
 
 const Auth = (props) => {
@@ -25,7 +26,7 @@ const title = () => {
 
    const handleSubmit=(e) => {
     e.preventDefault();
-    let url = login ? 'http://localhost:3000/user/signin' : 'http://localhost:3000/user/createuser';
+    let url = login ? `${APIURL}/user/signin` : `${APIURL}/user/createuser`;
     fetch(url, {
       method: 'POST',
       body: JSON.stringify({
