@@ -6,7 +6,7 @@ import './Navbar.css'
 const Navbar = (props) => {
   return (
     <nav>
-      <Logout setSession={props.setSession}/>
+      <Logout clearToken={props.clearToken}/>
     </nav>
   );
 };

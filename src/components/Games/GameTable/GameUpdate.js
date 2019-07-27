@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import {Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody} from 'reactstrap';
 
 const GameUpdate = (props) => {
-  const [editName, setEditName] = useState(props.game.name);
-  const [editDesc, setEditDesc] = useState(props.game.description);
-  const [editNumPlayers, setEditNumPlayers] = useState(props.game.numPlayers);
-  const [editLearnVideo, setEditLearnVideo] = useState(props.game.learnVideo);
+  const [editName, setEditName] = useState(props.gameToUpdate.name);
+  const [editDesc, setEditDesc] = useState(props.gameToUpdate.description);
+  const [editNumPlayers, setEditNumPlayers] = useState(props.gameToUpdate.numPlayers);
+  const [editLearnVideo, setEditLearnVideo] = useState(props.gameToUpdate.learnVideo);
  
-  const Update = (event, game) => {
+  const Update = (event, gameToUpdate) => {
     event.preventDefault();
     fetch(`http://localhost:3000/game/update/${props.gameToUpdate.id}`, {
         method: 'PUT',
@@ -18,7 +18,6 @@ const GameUpdate = (props) => {
         })
     }).then((res) => {
         props.fetchGames();
-        props.updateOff();
     })
   }
 

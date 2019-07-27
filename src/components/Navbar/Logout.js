@@ -5,7 +5,7 @@ import './Logout.css'
 
 const Logout = (props) => {
 return(
-    <img onClick={() => props.updateToken('')} 
+    <img onClick={() => props.clearToken()} 
     src={logout} 
     alt="logout" />
     )

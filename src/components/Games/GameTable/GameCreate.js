@@ -33,20 +33,20 @@ const GameCreate = (props) => {
       <ModalBody>
       <Form onSubmit={handleSubmit}>
       <FormGroup>
-          <Label htmlFor="name"/>
+          <Label htmlFor="name">Game Name:</Label>/>
           <Input name="name" value={name} onChange={(e) => setName(e.target.value)}/>
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="description"/>
+          <Label htmlFor="description">Game Description:</Label>/>
           <Input name="description" value={description} onChange={(e) => setDescription(e.target.value)}/>
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="numPlayers"/>
+          <Label htmlFor="numPlayers">Number of Players:</Label>/>
           <Input type="integer" name="numPlayers" value={numPlayers} onChange={(e) => setNumPlayers(e.target.value)}>
           </Input>
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="learnVideo"/>
+          <Label htmlFor="learnVideo">Link to Tutorial:</Label>/>
           <Input name="learnVideo" value={learnVideo} onChange={(e) => setLearnVideo(e.target.value)}/>
         </FormGroup>
         <Button type="submit">Click to Submit</Button>

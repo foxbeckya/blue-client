@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
+import {Button} from 'reactstrap';
+import GameDeleteMap from './GameTable/GameDeleteMap';
 import Game from './Game';
-
-
 
 const Games = (props) => {
   const [games, setGames] = useState([]);
@@ -15,9 +15,9 @@ const Games = (props) => {
           'Authorization': props.token
       })
     }).then(res => res.json())
-      .then(json => {
-        console.log(json);
-          setGames(json);
+      .then(games => {
+        console.log(games);
+          setGames(games);
       })
       .catch(err => console.group(err))
     }, [props.token]);
@@ -27,14 +27,14 @@ const Games = (props) => {
       return games.map((GameList, index) => 
         {
           return <Game key={index} game={GameList} />
-        }
-      )
+          });
     }
   
     return (
       <table>
         <tbody>
           {gameList()}
+          <Button onClick={() => <GameDeleteMap />}>Delete</Button>
         </tbody>
       </table>
     )
