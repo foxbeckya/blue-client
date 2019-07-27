@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Game = (props) => {
+const GameList = (props) => {
   return(
     <tr>
       <td>{props.game.name}</td>
@@ -11,4 +11,4 @@ const Game = (props) => {
   )
 }
 
-export default Game;
+export default GameList;

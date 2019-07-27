@@ -2,11 +2,12 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Auth from './components/Auth/Auth';
-//import Games from '.***********************************************************';
+import Games from './components/Games/Games';
+//import Switches from './components/Switches';
 
 // import {
 //   BrowserRouter as Router,
-// } from ‘react-router-dom’;
+// } from "react-router-dom";
 
 
 function App() {
@@ -14,15 +15,15 @@ function App() {
 
 
  useEffect(() => {
-  if (localStorage.getItem('sessionToken')){
-    setSessionToken(localStorage.getItem('sessionToken'));
+  if (localStorage.getItem('token')){
+    setSessionToken(localStorage.getItem('token'));
   }
 }, [])
 
 const updateToken = (newToken) => {
-  localStorage.setItem('sessionToken', newToken);
+  localStorage.setItem('token', newToken);
   setSessionToken(newToken);
-  console.log(sessionToken);
+  console.log(newToken);
 }
 
  const clearToken = () => {
@@ -30,16 +31,14 @@ const updateToken = (newToken) => {
    setSessionToken('');
  }
 
-//  const viewConductor =() => {
-//    return sessionToken !== undefined ? <Games />: <Auth setSession={setSessionToken}/>
-//  }
+ const viewConductor =() => {
+   return sessionToken !== '' ? <Games token={sessionToken}/>: <Auth updateToken={updateToken}/>
+ }
 
  return (
   <div>
           <Navbar clearToken={clearToken}/>
-      {/* {sessionToken === localStorage.getItem('sessionToken') ? <Games sessionToken={sessionToken}/>
-        : <Auth updateToken={updateToken}/>} */}
-        {/* {viewConductor()} */}
+        {viewConductor()}
 
   </div>
 );

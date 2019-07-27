@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-// import Login from './Login';
-// import Signup from './Signup';
 import APIURL from '../../helpers/environment';
 import './Auth.css';
 
@@ -38,15 +36,15 @@ const title = () => {
       }
     })
     .then(res => res.json())
-    .then(json => {(props.setSession(json.sessionToken));  
-     localStorage.setItem(json.sessionToken)})
+    .then(json => (props.updateToken(json.sessionToken)))
+ //   localStorage.setItem(json.sessionToken)}
     .catch(err => console.log(err))
   }
 
   return(
       <div id="infoform">
       <form onSubmit={handleSubmit} className="cardLike">
-      <h2 className="lisu">{title()}</h2>
+      <h2>{title()}</h2>
         <input className="fields" type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)}/><br/>
         <label className="labels" htmlFor="username">Username</label><br/>
         <input className="fields" type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/><br/>
@@ -54,7 +52,7 @@ const title = () => {
         {signupFields()}
         <button id="submit" type="submit">Submit</button>
         <br/>
-         <button className="toggle" tabIndex="toggle" onClick={loginToggle}>Select Log In/Sign Up</button>;
+         <button onClick={loginToggle}>Select Log In/Sign Up</button>
          <br/>
        </form>
     </div>
