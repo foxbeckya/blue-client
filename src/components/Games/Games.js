@@ -1,10 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import {Button} from 'reactstrap';
-import GameDeleteMap from './GameTable/GameDeleteMap';
+import {Button, Card, CardImg, CardDeck, CardBody} from 'reactstrap';
+//import GameCreate from './GameTable/GameCreate';
+import GameUpdate from './GameTable/GameUpdate';
+import GameDelete from './GameTable/GameDelete';
 import Game from './Game';
+import './Games.css'
 
+
+const gameToUpdate=()=> {
+  fetch(`http://localhost:3000/game/:id`)
+}
 const Games = (props) => {
   const [games, setGames] = useState([]);
+  const [updateShow, setUpdateShow] = useState(false);
 
   useEffect(() => {
     console.log (props.token);
@@ -14,30 +22,59 @@ const Games = (props) => {
           'Content-Type': 'application/json',
           'Authorization': props.token
       })
-    }).then(res => res.json())
+    })
+ .then(res => res.json())
       .then(games => {
         console.log(games);
           setGames(games);
       })
       .catch(err => console.group(err))
-    }, [props.token]);
+    }, [props.token])
+
+  //   const pieRows = () => {
+  //     return pies.map((pieInfo, index) => 
+  //       {
+  //         return <Pie key={index} pie={pieInfo} />
+  //       }
+  //     )
+  //   }
+  
+  //   return (
+  //     <table>
+  //       <tbody>
+  //         {pieRows()}
+  //       </tbody>
+  //     </table>
+  //   )
+  // }
 
     const gameList = () => {
       console.log(games);
-      return games.map((GameList, index) => 
-        {
-          return <Game key={index} game={GameList} />
-          });
-    }
+      return games.map((GameList, id) =>
+      {
   
     return (
-      <table>
-        <tbody>
-          {gameList()}
-          <Button onClick={() => <GameDeleteMap />}>Delete</Button>
-        </tbody>
-      </table>
-    )
-  }
+      // THIS IS SOMETHING TO ASK ABOUT
+        <CardDeck>
+          <Card>
+            <CardImg top width="100%" src="" alt="Game Pic" />
+            <CardBody>
+            <Game key={id} game={GameList} />
+              {/* <CardTitle>{props.game.name}</CardTitle>
+              <CardSubtitle>Card subtitle</CardSubtitle>
+              <CardText>{props.game.description}</CardText> */}
+              <Button onClick={() => setUpdateShow(true)}>Update This Game
+      <GameUpdate 
+        gameToUpdate={gameToUpdate}
+        show={updateShow}
+        onHide={() => setUpdateShow(false)} /></Button>
+            <Button onClick={()=> <GameDelete />}>Delete This Gmae        
+        </Button>
+            </CardBody>
+            </Card></CardDeck>
+            );
+       }
+      );
+    }}
 
   export default Games;

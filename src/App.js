@@ -2,8 +2,7 @@ import React, {useState, useEffect} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import Auth from './components/Auth/Auth';
-import Games from './components/Games/Games';
-//import Switches from './components/Switches';
+import Game from './components/Games/Game';
 
 // import {
 //   BrowserRouter as Router,
@@ -32,7 +31,7 @@ const updateToken = (newToken) => {
  }
 
  const viewConductor =() => {
-   return sessionToken !== '' ? <Games token={sessionToken}/>: <Auth updateToken={updateToken}/>
+   return sessionToken !== '' ? <Game token={sessionToken}/>: <Auth updateToken={updateToken}/>
  }
 
  return (

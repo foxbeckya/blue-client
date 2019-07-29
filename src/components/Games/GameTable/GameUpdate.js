@@ -42,7 +42,7 @@ const GameUpdate = (props) => {
           <Label htmlFor="learnVideo">Edit Tutorial Link:</Label>
             <Input name="learnVideo" value={editLearnVideo} onChange={(e) => setEditLearnVideo(e.target.value)}/>
           </FormGroup>
-          <Button type="submit">Update the game!</Button>
+          <Button type="submit">Update this Game</Button>
         </Form>
       </ModalBody>
     </Modal>
